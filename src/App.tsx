@@ -1,11 +1,14 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter } from "react-router";
+import Layout from "./components/Layout";
+import { ThemeProvider } from "./context/ThemeProvider";
 
 function App() {
   return (
-    <div>
-      Start App
-      <Button>Continue</Button>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider defaultTheme="system">
+        <Layout>Hello</Layout>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
