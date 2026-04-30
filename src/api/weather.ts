@@ -11,7 +11,7 @@ class WeatherAPI {
     const searchParams = new URLSearchParams({
       ...API_CONFIG.DEFAULT_PARAMS,
       ...Object.fromEntries(
-        Object.entries(params).map(([k, v]) => [k, String(v)])
+        Object.entries(params).map(([k, v]) => [k, String(v)]),
       ),
     });
 
@@ -20,9 +20,7 @@ class WeatherAPI {
 
   private async fetchData<T>(url: string): Promise<T> {
     if (!API_CONFIG.API_KEY) {
-      throw new Error(
-        "Missing VITE_OPEN_WEATHER_API_KEY. Add it to .env and restart the dev server."
-      );
+      throw new Error("Missing API Key. Add it and restart the dev server.");
     }
 
     const response = await fetch(url);
@@ -32,7 +30,7 @@ class WeatherAPI {
       throw new Error(
         `OpenWeather ${response.status} ${response.statusText}${
           body ? ` — ${body}` : ""
-        }`
+        }`,
       );
     }
 
